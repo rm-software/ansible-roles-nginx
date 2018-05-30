@@ -1,0 +1,29 @@
+---
+
+nginx_server_name:
+nginix_extra_server_names:
+nginx_ssl_dest_dir: /etc/ssl
+nginx_strong_dh_group: yes  # Strongly recomended in production. See weakdh.org.
+nginx_log_dir: /var/log/nginx
+
+# nginx file serving
+nginx_serve_static: no
+nginx_static_dir:
+nginx_serve_media: no
+nginx_media_dir:
+
+# wsgi config
+nginx_wsgi_app: webapp
+nginx_wsgi_servers:
+  - { host: localhost, port: 10000 }
+nginx_site_template: wsgi-site-conf.j2
+
+# Only used when nginx_use_letsencrypt is set to no/false
+nginx_ssl_crt:
+nginx_ssl_key:
+
+# Only used when nginx_use_letsencrypt is set to yes/true. The 'certbot' role will automatically generate these files.
+nginx_use_letsencrypt: yes
+nginx_certbot_live_dir: '/etc/letsencrypt/live/{{ nginx_server_name }}'
+nginx_certbot_cert_filename: fullchain.pem
+nginx_certbot_privkey_filename: privkey.pem

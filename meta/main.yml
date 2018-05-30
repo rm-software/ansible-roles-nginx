@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Rod Morison
+  description: Nginx installation
+  company: Rod Morison Software
+  license: Apache
+  min_ansible_version: 2.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - 16.04
+    - 16.10
+  galaxy_tags:
+    - nginx
+    - django
+
+dependencies:
+  - rm-software.s-certbot
