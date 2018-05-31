@@ -69,4 +69,22 @@ server {
     location = /maintenance_on.html {
         root {{ nginx_static_dir }}/;
     }
+{% for proxy in nginx_http_proxies %}
+    location /{{ proxy.path }}/ {
+        rewrite ^/{{ proxy.path }}/(.*)$ /$1 break;
+        proxy_pass http://{{ proxy.address }}:{{ proxy.port }};
+        proxy_set_header Host $host;
+        proxy_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        access_log off;
+
+{% if nginx_restricted_auth %}
+        auth_basic "Restricted Content";
+        auth_basic_user_file {{ nginx_restricted_file_path }};
+{% endif %}
+    }
+{% endfor %}
 }

@@ -65,7 +65,12 @@ Static file service, if Nginx is serving Django collectstatic files directly:
 Log file dir
 
     nginx_log_dir: /var/log/nginx
-  
+
+Htpass for restricted content; only deployed if nginx_restricted_auth set
+
+    nginx_restricted_file_path: /etc/nginx/.htpasswd
+    nginx_restricted_auth:
+
 Dependencies
 ------------
 

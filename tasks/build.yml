@@ -13,12 +13,12 @@
 
 - name: Copy the SSL certificate to the remote server
   copy: content={{ ssl_crt }} dest={{ nginx_ssl_dest_dir }}/{{ nginx_server_name }}.crt
-  notify: restart nginx
+  notify: Restart Nginx
   when: not nginx_use_letsencrypt and ssl_crt
 
 - name: Copy the SSL private key to the remote server
   copy: content={{ ssl_key }} dest={{ nginx_ssl_dest_dir }}/{{ nginx_server_name }}.key
-  notify: restart nginx
+  notify: Restart Nginx
   when: not nginx_use_letsencrypt and ssl_key
 
 - name: Ensure that a strong Diffie-Hellman group is used
@@ -27,4 +27,4 @@
 
 - name: Ensure that the default site is disabled
   file: path=/etc/nginx/sites-enabled/default state=absent
-  notify: reload nginx
+  notify: Reload Nginx
