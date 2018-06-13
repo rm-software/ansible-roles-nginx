@@ -71,6 +71,10 @@ Htpass for restricted content; only deployed if nginx_restricted_auth set
     nginx_restricted_file_path: /etc/nginx/.htpasswd
     nginx_restricted_auth:
 
+Set Nginx load balancing algorithm
+
+    nginx_load_balancing_algorithm: ip_hash
+
 Dependencies
 ------------
 

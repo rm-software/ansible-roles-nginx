@@ -1,5 +1,5 @@
 upstream {{ nginx_wsgi_app }}-wsgi {
-  ip_hash;
+  {{ nginx_load_balancing_algorithm | default("ip_hash") }};
 {% for server in nginx_wsgi_servers %}
   server {{ server }}:{{ nginx_wsgi_port }};
 {% endfor %}
