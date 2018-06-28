@@ -15,7 +15,7 @@ Role Variables
 Template for site conf file:
 
     nginx_site_template: wsgi-site-conf.j2
-    
+
 Set site domain, must be a single non-wildcard DNS domain:
 
     nginx_server_name:
@@ -34,7 +34,7 @@ enough, but you can override:
     nginx_certbot_cert_filename: fullchain.pem
     nginx_certbot_privkey_filename: privkey.pem
 
-Ssl setup (if not using certbot); note: `ssl_key` should be kept secret!
+Ssl setup (if not using certbot); note: `nginx_ssl_key` should be kept secret!
 
     nginx_use_letsencrypt: no
     nginx_ssl_dest_dir: /etc/ssl
@@ -45,9 +45,9 @@ Ssl setup (if not using certbot); note: `ssl_key` should be kept secret!
     nginx_ssl_key: |
       -----BEGIN PRIVATE KEY-----
       ...
-      
+
 Upstream wsgi upstream name (`{{ nginx_wsgi_app }}-wsgi`) and servers
-(for wsgi-site-conf template). 
+(for wsgi-site-conf template).
 
     nginx_wsgi_app: webapp
     nginx_wsgi_port: 10000
